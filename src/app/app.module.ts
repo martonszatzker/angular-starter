@@ -1,16 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, ViewChild} from '@angular/core';
 
 import { AppComponent } from './app.component';
+import {CoreModule} from './core/core.module';
+import {SharedModule} from './shared/shared.module';
+import {MatSidenav} from '@angular/material';
+import {ContainerComponent} from './shared/container/container.component';
+import {DashboardComponent} from './shared/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CoreModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
