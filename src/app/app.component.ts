@@ -1,29 +1,33 @@
 import {Component, ViewChild} from '@angular/core';
 import {MatSidenav} from '@angular/material';
+import {onMainContentChange, popOverState} from './core/animations/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {SidenavService} from './shared/services/sidenav.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    popOverState, onMainContentChange
+  ]
 })
 export class AppComponent {
-  title = 'angular-starter';
+  show = false;
 
   @ViewChild('sidenav') sidenav: MatSidenav;
-  isExpanded = true;
-  showSubmenu = false;
-  isShowing = false;
-  showSubSubMenu = false;
 
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
+  public onSideNavChange: boolean;
+
+  constructor(private sidenavService: SidenavService) {
+    this.sidenavService.sideNavState$.subscribe( res => {
+      console.log(res)
+      this.onSideNavChange = res;
+    });
   }
 
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
+  get stateName() {
+    return this.show ? 'show' : 'hide';
   }
+
 }

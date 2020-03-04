@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -34,6 +33,9 @@ import { HeaderComponent } from './menu/header/header.component';
 import {MatButtonModule} from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ContainerComponent } from './container/container.component';
+import {SidenavService} from './services/sidenav.service';
+import {onMainContentChange} from '../core/animations/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -41,7 +43,9 @@ import { ContainerComponent } from './container/container.component';
     MatListModule,
     MatIconModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+
+    BrowserAnimationsModule,
   ],
   exports: [
     MatToolbarModule,
@@ -50,14 +54,18 @@ import { ContainerComponent } from './container/container.component';
     MatSidenavModule,
     MatButtonModule,
 
-
-    ContainerComponent
+    NavbarComponent,
+    ContainerComponent,
+    HeaderComponent,
   ],
   declarations: [
     NavbarComponent,
     HeaderComponent,
     DashboardComponent,
     ContainerComponent
+  ],
+  providers: [
+    SidenavService
   ]
 })
 
